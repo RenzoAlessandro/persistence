@@ -10,4 +10,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(persistence
   source/main.cpp
+  source/DirectedGraph.hpp
+  source/PartialDirectedGraph.hpp
   )
