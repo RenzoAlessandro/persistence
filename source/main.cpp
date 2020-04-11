@@ -29,6 +29,10 @@ int main() {
   // inserted node.
   ADE::Node<int>* inserted_node_ptr = my_graph.insert_vertex(2, root_ptr, 0);
 
+  int a = 10;
+  int b = a * 4;
+  std::cout << b << std::endl;
+
   // Likewise, the method to insert a new vertex, returns a reference of the
   // new
   // vertex inserted
