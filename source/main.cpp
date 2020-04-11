@@ -12,6 +12,7 @@ int main() {
   std::cout << "Here" << std::endl;
   std::cout << "this is a change" << std::endl;
 
+
   // Create a DirectedGraph, a maximum of 5 edged each node and the root with
   // the starting valuee of 1.
   ADE::DirectedGraph<int> my_graph(1, 5);
@@ -19,6 +20,8 @@ int main() {
   // We can obtain the root and print their value.
   ADE::Node<int>* root_ptr = my_graph.get_root_ptr();
   std::cout << "Root Value: " << *root_ptr->data_ << std::endl;
+
+  std::cout << "Hello" << std::endl;
 
   // Also, we can insert a new vertex passing the new Node value, a Node
   // reference and the index of the pointer used from the reference node to
