@@ -33,6 +33,15 @@ int main() {
   int b = a * 4;
   std::cout << b << std::endl;
 
+
+  // Cambio de un commit
+  double temporal = 10.0;
+  temporal *= 100;
+  // fin del cambio
+
+  temporal += a;
+  std::cout << temporal << std::endl;
+
   // Likewise, the method to insert a new vertex, returns a reference of the
   // new
   // vertex inserted
