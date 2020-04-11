@@ -9,6 +9,9 @@
 #include "PartialDirectedGraph.hpp"
 
 int main() {
+  std::cout << "Here" << std::endl;
+  std::cout << "this is a change" << std::endl;
+
   // Create a DirectedGraph, a maximum of 5 edged each node and the root with
   // the starting valuee of 1.
   ADE::DirectedGraph<int> my_graph(1, 5);
