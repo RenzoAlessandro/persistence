@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+
+add_executable(pointer_machine_test directed_graph_test.cpp)
+
+target_link_libraries(pointer_machine_test gtest_main)
+target_link_libraries(pointer_machine_test gmock_main)
+
+add_test(pointer_machine_test pointer_machine_test)
