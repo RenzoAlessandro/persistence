@@ -13,8 +13,27 @@ template <typename Type>
 class PartialNode : public Node<Type> {
  public:
   typedef Type data_type;
-  PartialNode(data_type data, std::size_t const& out_ptrs_size)
+  PartialNode(data_type data, std::size_t const& out_ptrs_size,
+              std::size_t const& in_ptrs_size)
       : Node<Type>(data, out_ptrs_size) {}
+
+  data_type get_data() { return *PointerMachine::Node<Type>::data_; }
+
+  data_type get_data(unsigned int version) { return *Node<Type>::data_; }
+
+  bool set_data(data_type const data) {
+    *Node<Type>::data_ = data;
+    return true;
+  }
+
+  bool set_ptr(PartialNode* ptr, unsigned int id) {
+    Node<Type>::forward_ = ptr;
+    return true;
+  }
+
+  PartialNode& operator[](std::size_t id) const {
+    return *dynamic_cast<PartialNode*>(&(Node<Type>::operator[](id)));
+  }
 
   PartialNode& operator[](
       std::pair<std::size_t, unsigned int> id_version) const {
@@ -33,6 +52,10 @@ class PartialDirectedGraph : public DirectedGraph<Type, Node> {
       : DirectedGraph<Type, Node>(data, out_ptrs_size),
         in_ptrs_size_(in_ptrs_size),
         current_version(0) {}
+
+  Node* get_root_ptr() {
+    return DirectedGraph<Type, Node>::get_root_ptr();
+  }
 
   Node* get_root_ptr(unsigned int version) {
     return DirectedGraph<Type, Node>::get_root_ptr();
