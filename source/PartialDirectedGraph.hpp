@@ -51,7 +51,12 @@ class PartialDirectedGraph : public DirectedGraph<Type, Node> {
  private:
   Node* insert_vertex(data_type const data, Node* u, std::size_t position,
                       unsigned int version) {
-    return DirectedGraph<Type, Node>::insert_vertex(data, u, position);
+    Node* inserted_node =
+        DirectedGraph<Type, Node>::insert_vertex(data, u, position);
+    Node* inserted_by_forward = dynamic_cast<Node*>(u->forward_[position]);
+    std::cout << "inserted forward: " << *inserted_by_forward->data_
+              << std::endl;
+    return inserted_node;
   }
 
   void add_edge(Node* u, Node* v, std::size_t position, unsigned int version) {

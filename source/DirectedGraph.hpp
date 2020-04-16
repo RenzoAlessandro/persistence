@@ -91,7 +91,7 @@ class DirectedGraph {
     u->forward_[position] = v;
   }
 
- private:
+ protected:
   Node* root_ptr_;
   std::size_t out_ptrs_size_;
 };
