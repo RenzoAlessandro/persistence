@@ -35,7 +35,8 @@ class Node {
     if (!forward_[id]) {
       throw std::logic_error("Access to null reference.");
     }
-    return *forward_[id];
+    Node p = *forward_[id];
+    return p;
   }
 
   data_type* data_;
@@ -49,12 +50,14 @@ class DirectedGraph {
   typedef Type data_type;
 
   DirectedGraph(data_type const data, std::size_t const& out_ptrs_size)
+      //: root_ptr_(new Node(data, out_ptrs_size,dynamic_cast<ADE::Persistence::PartialDirectedGraph<Type>*>(this))),
       : root_ptr_(new Node(data, out_ptrs_size)),
         out_ptrs_size_(out_ptrs_size) {}
 
   virtual ~DirectedGraph() {}
 
-  Node* get_root_ptr() { return root_ptr_; }
+  Node* get_root_ptr() {
+      return root_ptr_; }
 
   /**
    *  \brief Inserts element
@@ -91,7 +94,7 @@ class DirectedGraph {
     u->forward_[position] = v;
   }
 
- private:
+ protected:
   Node* root_ptr_;
   std::size_t out_ptrs_size_;
 };
