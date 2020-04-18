@@ -20,20 +20,18 @@ class Node {
   virtual ~Node() {}
 
   /**
-   *  \brief Access specified element
-   *
-   *  Returns a reference to the element at specified location position. If id
-   * is not within the range of the container an exception of type
-   * std::out_of_range is thrown. If no node exist at the location
-   * std::logic_error is thrown.
-   *
+   *  \brief Acceder al elemento específico
    */
+
+  // Devuelve una referencia al elemento en la posición de ubicación especificada. 
+  // Si id no está dentro del rango del contenedor, se genera una excepción de tipo std :: out_of_range. 
+  // Si no existe ningún nodo en la ubicación, se lanza std :: logic_error.
   Node& operator[](std::size_t id) const {
     if (out_ptrs_size_ < id) {
-      throw std::out_of_range("Index out of node edges range.");
+      throw std::out_of_range("Index fuera del rango de aristas del nodo.");
     }
     if (!forward_[id]) {
-      throw std::logic_error("Access to null reference.");
+      throw std::logic_error("Acceso a referencia nula.");
     }
     return *forward_[id];
   }
@@ -65,10 +63,10 @@ class DirectedGraph {
    */
   Node* insert_vertex(data_type const data, Node* u, std::size_t position) {
     if (u->out_ptrs_size_ != out_ptrs_size_) {
-      throw std::logic_error("Node with different number of out pointers.");
+      throw std::logic_error("Nodo con diferente número de punteros de salida.");
     }
     if (out_ptrs_size_ < position) {
-      throw std::out_of_range("Insert position out of node edges range.");
+      throw std::out_of_range("Posición insertada fuera del rango de aristas del nodo.");
     }
     Node* next_node_ptr = dynamic_cast<Node*>(u->forward_[position]);
     Node* new_node = new Node(data, out_ptrs_size_);
@@ -78,20 +76,20 @@ class DirectedGraph {
   }
 
   /**
-   *  \brief Attachs two nodes
+   *  \brief Adjunta dos nodos
    *
-   *  Adds edge from u to v and throws and exception oof type std::out_of_range
-   * if position is not within the range of u. nodes,
+   *  Agrega borde de u a v y lanza una excepción del tipo std::out_of_range 
+   *  si la posición no está dentro del rango del nodo u.
    *
    */
   void add_edge(Node* u, Node* v, std::size_t position) {
     if (u->out_ptrs_size_ < position) {
-      throw std::out_of_range("Position out of first argument node.");
+      throw std::out_of_range("Posición fuera del primer nodo.");
     }
     u->forward_[position] = v;
   }
 
- private:
+ protected:
   Node* root_ptr_;
   std::size_t out_ptrs_size_;
 };
