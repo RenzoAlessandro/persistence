@@ -61,6 +61,7 @@ class PartialDirectedGraph : public DirectedGraph<Type, Node> {
       : DirectedGraph<Type, Node>(data, out_ptrs_size),
         in_ptrs_size_(in_ptrs_size),
         current_version(0) {}
+        
 /*
   Node* get_root_ptr() {
     return DirectedGraph<Type, Node>::get_root_ptr();
